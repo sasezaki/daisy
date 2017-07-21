@@ -1,17 +1,15 @@
 <?php
 namespace Api\Books\Action;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Interop\Http\ServerMiddleware\ {
-    DelegateInterface, MiddlewareInterface
-};
-use Hal\ {
-    HalResource, Link, Renderer\JsonRenderer
-};
-use Zend\Diactoros\Response\TextResponse;
 use Api\Books\Repository;
-
+use Hal\HalResource;
+use Hal\Link;
+use Hal\Renderer\JsonRenderer;
+use Interop\Http\ServerMiddleware\DelegateInterface;
+use Interop\Http\ServerMiddleware\MiddlewareInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use RuntimeException;
+use Zend\Diactoros\Response\TextResponse;
 
 class BookAction implements MiddlewareInterface
 {
