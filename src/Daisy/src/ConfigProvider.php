@@ -3,6 +3,7 @@
 namespace Daisy;
 
 use Daisy\Action\PostCreateAction;
+use Daisy\Repository\CommentRepository;
 use Hal\Renderer\JsonRenderer;
 use Psr\Container\ContainerInterface;
 use Hal\HalResponseFactory;
@@ -48,9 +49,11 @@ class ConfigProvider
                 JsonRenderer::class => JsonRenderer::class
             ],
             'factories'  => [
+                // action
                 Action\PostAction::class => function (ContainerInterface $container) {
                     return new PostAction(
                         $container->get(PostRepository::class),
+                        $container->get(CommentRepository::class),
                         $container->get(ResourceGenerator::class),
                         $container->get(HalResponseFactory::class)
                     );
@@ -62,8 +65,14 @@ class ConfigProvider
                         $container->get(UrlHelper::class)
                     );
                 },
+                Action\CommentAction::class => new class {},
+                Action\CommentsAction::class => new class {},
+                // repository
                 PostRepository::class => function (ContainerInterface $container) {
                     return new PostRepository($container->get(Adapter::class));
+                },
+                CommentRepository::class => function (ContainerInterface $container) {
+                    return new CommentRepository($container->get(Adapter::class));
                 }
             ],
         ];

@@ -3,7 +3,7 @@ use Api\ {
     Books\Book, Books\BookCollection
 };
 use Daisy\Entity\ {
-    Post, CommentCollection
+    Post, Comment, CommentCollection
 };
 use Hal\Metadata\ {
     MetadataMap, RouteBasedCollectionMetadata, RouteBasedResourceMetadata
@@ -12,6 +12,7 @@ use Zend\Hydrator\ObjectProperty as ObjectPropertyHydrator;
 
 return [
     MetadataMap::class => [
+        // HAL API sample
         [
             '__class__' => RouteBasedResourceMetadata::class,
             'resource_class' => Book::class,
@@ -24,17 +25,24 @@ return [
             'collection_relation' => 'book',
             'route' => 'books',
         ],
+        // daisy,
         [
             '__class__' => RouteBasedResourceMetadata::class,
             'resource_class' => Post::class,
             'route' => 'post',
             'extractor' => ObjectPropertyHydrator::class,
         ],
-//        [
-//            '__class__' => RouteBasedCollectionMetadata::class,
-//            'collection_class' => CommentCollection::class,
-//            'collection_relation' => 'post',
-//            'route' => 'comments',
-//        ],
+        [
+            '__class__' => RouteBasedResourceMetadata::class,
+            'resource_class' => Comment::class,
+            'route' => 'comment',
+            'extractor' => ObjectPropertyHydrator::class,
+        ],
+        [
+            '__class__' => RouteBasedCollectionMetadata::class,
+            'collection_class' => CommentCollection::class,
+            'collection_relation' => 'comment',
+            'route' => 'comments',
+        ],
     ],
 ];

@@ -41,3 +41,8 @@ $app->get('/api/book/{id:\d+}', Api\Books\Action\BookAction::class, 'book');
 
 $app->get('/post/{id:\d+}', Daisy\Action\PostAction::class, 'post');
 $app->post('/post', Daisy\Action\PostCreateAction::class, 'post.create');
+
+$app->get('/comment/{id:\d+}', Daisy\Action\CommentAction::class, 'comment');
+
+$app->get('/comments', Daisy\Action\CommentsAction::class, 'comments');
+

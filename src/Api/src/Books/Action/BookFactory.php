@@ -4,8 +4,6 @@ namespace Api\Books\Action;
 
 use Api\Books\Repository;
 use Interop\Container\ContainerInterface;
-use Zend\Expressive\Router\RouterInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
 
 use Hal\Renderer\JsonRenderer;
 
